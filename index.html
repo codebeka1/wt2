@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Copy to Clipboard</title>
+</head>
+<body>
+
+    <div>
+        <h3>Section 1</h3>
+        <textarea id="copyText1" rows="4" cols="50">
+            
+            7.html
+            <html>
+            <head><title>Unix Command</title></head>
+            <body>
+            <form method=GET action="http://localhost/cgi-bin/7a.pl" >
+            <center><br><h1>ENTER UNIX COMMAND TO BE EXECUTED</h1>
+            <input type="text" name="msg">
+            <input type="submit" value="CLICKME">
+            </form> 
+            </body> 
+            </html>
+        
+        </textarea>
+        <button onclick="copyToClipboard('copyText1')">Copy Text</button>
+    </div>
+
+    <div>
+        <h3>Section 2</h3>
+        <textarea id="copyText2" rows="4" cols="50">
+            7a.pl
+            #!/usr/bin/perl
+            use CGI':standard';
+            print "con tent-type:text/html\n\n"; 
+            $c=param('msg');
+            system($c); 
+            exit(0);
+        </textarea>
+        <button onclick="copyToClipboard('copyText2')">Copy Text</button>
+    </div>
+
+    <div>
+        <h3>Section 3</h3>
+        <textarea id="copyText3" rows="4" cols="50">
+           
+            7b.pl
+            #!/usr/bin/perl 
+            print "content-type:text/html ";
+            $count_file="/var/www/cgi-bin/ru.txt";
+            if(open(FILE,'<'.$count_file))
+            {
+            $no_accesses=<FILE>;
+            close(FILE);
+            if(open(FILE,'>'.$count_file))
+            {
+            $no_accesses++;
+            print FILE $no_accesses;
+            close(FILE);
+            print "no. of visitors:",$no_accesses;
+            }
+            else
+            {
+            print "[can't write to data file]";
+            }
+            }
+            else
+            {
+            print "[sorry]";
+            }
+            exit(0);
+        
+        
+        
+        </textarea>
+        <button onclick="copyToClipboard('copyText3')">Copy Text</button>
+    </div>
+
+
+    <div>
+        <h3>Section 4</h3>
+        <textarea id="copyText4" rows="4" cols="50">
+          
+            8.html
+            <html>
+            <body>
+            <form action="http://localhost/cgi-bin/8.pl" method="get">
+             First Name : <input type="text" name="fname"> <br>
+            Last Name : <input type="text" name="lname"> <br>
+             Age : <input type="text" name="age"> <br>
+             Address : <input type="text" name="address"> <br>
+             Pincode : <input type="text" name="pincode"> <br>
+            <input type="submit" value="submit">
+            </form>
+            </body>
+            </html>
+        
+        </textarea>
+        <button onclick="copyToClipboard('copyText4')">Copy Text</button>
+    </div>
+
+    <div>
+        <h3>Section 5</h3>
+        <textarea id="copyText5" rows="4" cols="50">
+            8.pl
+            #!/usr/bin/perl
+            print "content-type:text/html ";
+            print "<html><title>Result of the insert operation </title>";
+            use CGI ':standard';
+            use DBI;
+            $dbh=DBI->connect("DBI:mysql:test","root","");
+            $fname=param("fname");
+            $lname=param("lname");
+            $age=param("age");
+            $address=param("address");
+            $pincode=param("pincode");
+            $qh=$dbh->prepare("insert into stud 
+            values('$fname','$lname','$age','$address','$pincode')");
+            $qh->execute();
+            $qh=$dbh->prepare("select * from stud");
+            $qh->execute();
+            print "<table border 
+            size=1><tr><th>Firstname</th><th>LastName</th><th>Age</th<th>Address</th><th>Pinc
+            ode</th></tr>";
+            while ( ($fname,$lname,$age,$address,$pincode)=$qh->fetchrow())
+            { 
+             print 
+            "<tr><td>$fname</td><td>$lname</td><td>$age</td><td>$address</td><td>$pincode</td>
+            </tr>";
+            }
+            print "</table>";
+            $qh->finish();
+            $dbh->disconnect();
+            print"</HTML>";
+        </textarea>
+        <button onclick="copyToClipboard('copyText5')">Copy Text</button>
+    </div>
+
+
+
+    <div>
+        <h3>Section 6</h3>
+        <textarea id="copyText6" rows="4" cols="50">
+            9.html
+            <html >
+            <head> <title>Cookies</title> </head>
+            <body>
+            <form action="http://localhost/cgi-bin/9.php" method="post">
+            <p> The last visited time was <input type="submit" value="Display Now"/> </p>
+            </form>
+            </body>
+            </html>
+        </textarea>
+        <button onclick="copyToClipboard('copyText6')">Copy Text</button>
+    </div>
+
+
+
+    <div>
+        <h3>Section 7</h3>
+        <textarea id="copyText7" rows="4" cols="50">
+            9.php
+            <?php
+            $present_time=date(“H:i:s-m/d/y”);
+            $expiry= 60 * 60 *24 *60 + time();
+            setcookie("Lastvisit",$present_time, $expiry);
+            if(isset($_COOKIE[“Lastvisit”]))
+            {
+            echo "Cookie has been set";
+            echo “The current time of the system is”;
+            echo $present_time;
+            echo "The Last visited Time and Date";
+            echo $_COOKIE["Lastvisit"];
+            }
+            else
+            echo ”You’ve got some old cookies!”;
+            ?>
+        </textarea>
+        <button onclick="copyToClipboard('copyText7')">Copy Text</button>
+    </div>
+
+
+
+    <div>
+        <h3>Section 8</h3>
+        <textarea id="copyText8" rows="4" cols="50">
+            10.html
+            <html>
+            <head> <title>SESSION PROGRAM </title> </head>
+            <body>
+            <form action="http://localhost/cgi-bin/10.php" method="post">
+            <p> To see page views count in session <input type="submit" value="Click Here"/> </p>
+            </form>
+            </body>
+            </html> 
+        </textarea>
+        <button onclick="copyToClipboard('copyText8')">Copy Text</button>
+    </div>
+
+
+
+    <div>
+        <h3>Section 9</h3>
+        <textarea id="copyText9" rows="4" cols="50">
+            10.php
+            <?php
+            session_start();
+            if (!isset($_SESSION))
+            {
+            $_SESSION["count"] = 1;
+            echo "<p>Counter initialized</p>\n";
+            }
+            else { $_SESSION["count"]++; }
+            echo "<p>This page has been viewed <b>$_SESSION[count]</b> times.</p>".
+            "<p>reload this page to increment</p>";
+            ?>
+        </textarea>
+        <button onclick="copyToClipboard('copyText9')">Copy Text</button>
+    </div>
+
+
+    <!-- Add more sections as needed -->
+
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId);
+            copyText.select();
+            document.execCommand("copy");
+           
+        }
+    </script>
+
+</body>
+</html>
